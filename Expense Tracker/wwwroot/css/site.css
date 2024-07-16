@@ -33,6 +33,24 @@ body {
     font-size:x-large;
 }
 
+/*BreadCrumb*/
+.e-breadcrumb a, .e-breadcrumb a:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/*Button*/
+.btn:focus, .btn:active{
+    outline:none !important;
+    box-shadow:none;
+}
+
+/*HyperLink*/
+.no-a-decoration, .no-a-decoration:hover{
+    text-decoration: none;
+    color:inherit;
+}
+
 /*Grid*/
 .e-grid {
     border: 0;
@@ -141,4 +159,13 @@ body {
 
 img {
    object-fit: contain;
+}
+
+/*income and expense bg*/
+.bg-income {
+    background-color: #F97300;
+}
+
+.bg-expense {
+    background-color: #7B6CF6;
 }

@@ -181,6 +181,8 @@ nav.navbar {
     margin-left: 290px;
 }
 
+
+
 /*Profile Pic*/
 img.profile-pic {
     width: 45px;
@@ -188,13 +190,28 @@ img.profile-pic {
     border-radius: 50%;
 }
 
+.profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(72, 84, 95, 0.12);
+    padding: 16px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+    .profile-wrapper .titles {
+        line-height: 1;
+    }
+
 /*keep img ratio*/
 .container img {
     height: 100%;
     width: 100%;
 }
 
-img {
+img.pic{
    object-fit: contain;
 }
 
@@ -265,6 +282,18 @@ img {
     background-color: inherit;
 }
 
+/*logo*/
+.logo-wrapper {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.app-logo {
+    padding: 10px 10px;
+}
+
 /*Widget*/
 .widget {
     border-radius: 1rem;
@@ -296,3 +325,6 @@ img {
     .widget.chart {
         padding: 5px;
     }
+
+
+

@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Expense_Tracker.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["PageTitle"] = "Categories";
+    ViewData["PageActionText"] = "+ New Category";
+    ViewData["PageActionUrl"] = "/Category/Create";
 }
 
 <div class="row">
@@ -18,7 +20,7 @@
     </div>
     <div class="col-md-4">
         <div class="widget h-100 d-flex justify-content-center align-items-center">
-            <img src="~/images/addIcon.png" />
+            <img class="pic" src="~/images/addIcon.png" />
         </div>
     </div>
 </div>
@@ -26,16 +28,23 @@
 
 <script id="typeColumnTemplate" type="text/x-template">
     ${if(Type=="Income")} 
-        <span class="badge bg-success">${Type}</span>
+        <span class="badge bg-income">${Type}</span>
     ${else}
-        <span class="badge bg-danger">${Type}</span>
+        <span class="badge bg-expense">${Type}</span>
     ${/if}
 </script>
 
 <script id="actionColumnTemplate" type="text/x-template">
     <div class="d-flex flex-row justify-content-start">
-        <a class="btn btn-sm" href="/Category/Edit/${CategoryId}">
+        <a class="btn btn-sm no-a-decoration" href="/Category/Edit/${CategoryId}">
             <i class="fa-solid fa-pen fa-lg"></i>
         </a>
+        <form action="/Category/Delete/${CategoryId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are you sure to delete this category?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger" ></i>
+            </button>
+        </form>
     </div>
 </script>

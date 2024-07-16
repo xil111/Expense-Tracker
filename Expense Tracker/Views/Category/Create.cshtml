@@ -1,7 +1,7 @@
 ﻿@model Expense_Tracker.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["PageTitle"] = "Create a New Category";
 }
 
 
@@ -17,11 +17,10 @@
                         <input type="radio" id="radiomiddle" name="Type" value="Income" checked="@(Model.Type=="Income")" />
                         <label class="e-btn" for="radiomiddle">Income</label>
                     </div>
-                    <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <ejs-textbox id="title" placeholder="Title" ejs-for="Title" floatLabelType="Always"></ejs-textbox>
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <span asp-validation-for="Title" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
                     <ejs-textbox id="icon" placeholder="Icon" ejs-for="Icon" floatLabelType="Always"></ejs-textbox>
@@ -34,7 +33,7 @@
     </div>
     <div class="col-md-4">
         <div class="widget h-100 d-flex justify-content-center align-items-center">
-            <img src="~/images/addIcon.png" />
+            <img class="pic" src="~/images/addIcon.png" />
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ namespace Expense_Tracker.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Transaction/Details/5
+        /*// GET: Transaction/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,12 +42,12 @@ namespace Expense_Tracker.Controllers
             }
 
             return View(transaction);
-        }
+        }*/
 
         // GET: Transaction/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryId");
+            PopulateCategories();
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Expense_Tracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryId", transaction.CategoryId);
+            PopulateCategories();
             return View(transaction);
         }
 
@@ -81,7 +81,7 @@ namespace Expense_Tracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryId", transaction.CategoryId);
+            PopulateCategories();
             return View(transaction);
         }
 
@@ -117,12 +117,12 @@ namespace Expense_Tracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryId", transaction.CategoryId);
+            PopulateCategories();
             return View(transaction);
         }
 
         // GET: Transaction/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        /*public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -138,7 +138,7 @@ namespace Expense_Tracker.Controllers
             }
 
             return View(transaction);
-        }
+        }*/
 
         // POST: Transaction/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -158,6 +158,15 @@ namespace Expense_Tracker.Controllers
         private bool TransactionExists(int id)
         {
             return _context.Transactions.Any(e => e.TransactionId == id);
+        }
+
+        [NonAction]
+        public void PopulateCategories()
+        {
+            var CategoryCollection = _context.categories.ToList();
+            Category DefaultCategory = new Category() { CategoryId = 0, Title = "Choose a Category" };
+            CategoryCollection.Insert(0, DefaultCategory);
+            ViewBag.Categories = CategoryCollection;
         }
     }
 }
